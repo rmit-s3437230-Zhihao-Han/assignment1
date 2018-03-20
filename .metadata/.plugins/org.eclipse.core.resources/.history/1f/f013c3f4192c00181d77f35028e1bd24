@@ -5,7 +5,6 @@ public class People {
 	private byte age;
 	private char gender;
 	
-	//Constructor
 	public People(String _firstName, String _lastName, byte _age, char _gender)
 	{
 		this.firstName = _firstName;
@@ -13,7 +12,6 @@ public class People {
 		this.age = _age;
 		this.gender = _gender;
 	}
-	
 	//Accessors
 	public String getFirstName()	{ return this.firstName; }
 	public String getLastName()		{ return this.lastName; }

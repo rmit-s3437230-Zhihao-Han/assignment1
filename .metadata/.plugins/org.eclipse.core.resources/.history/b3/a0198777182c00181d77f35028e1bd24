@@ -1,0 +1,7 @@
+import java.util.*;
+
+public class Adults extends People{
+	private People[] friends = new People[50];
+	
+	
+}

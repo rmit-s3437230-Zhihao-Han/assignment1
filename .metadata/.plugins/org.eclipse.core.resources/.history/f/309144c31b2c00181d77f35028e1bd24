@@ -3,8 +3,7 @@ import java.util.*;
 public class Adults extends People{
 	
 	private boolean maritalStatus;
-	private Adults partner;
-	//private Babies children;
+	private People partner;
 	private People[] friends = new People[50];
 	
 	
@@ -13,17 +12,18 @@ public class Adults extends People{
 	}
 
 	public String getMaritalStatus() {
-		return this.maritalStatus == true ? "Married to " + this.partner.getName() : "Single";
+		return this.maritalStatus == true ? "Married" : "Single";
 	}
 	
-	public void setPartner(Adults _partner)
+	public void setMaritalStatus(Adults _partner)
 	{
 		this.maritalStatus = true;
 		this.partner = _partner;
 		
 		_partner.maritalStatus = true;
-		_partner.partner = this;
+		
 	}
+	
 	
 	
 }

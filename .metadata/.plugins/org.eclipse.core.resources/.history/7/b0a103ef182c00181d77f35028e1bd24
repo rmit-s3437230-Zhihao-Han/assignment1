@@ -7,6 +7,4 @@ public class Teenagers extends People{
 	public Teenagers(String _firstName, String _lastName, byte _age, char _gender) {
 		super(_firstName, _lastName, _age, _gender);
 	}
-	
-	
 }

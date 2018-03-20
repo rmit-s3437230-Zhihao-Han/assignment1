@@ -4,8 +4,8 @@ public class Adults extends People{
 	
 	private boolean maritalStatus;
 	private Adults partner;
-	//private Babies children;
-	private People[] friends = new People[50];
+	private Babies children;
+	private People[] = new People[50];
 	
 	
 	public Adults(String _firstName, String _lastName, byte _age, char _gender){
@@ -13,10 +13,10 @@ public class Adults extends People{
 	}
 
 	public String getMaritalStatus() {
-		return this.maritalStatus == true ? "Married to " + this.partner.getName() : "Single";
+		return this.maritalStatus == true ? "Married" : "Single";
 	}
 	
-	public void setPartner(Adults _partner)
+	public void setMaritalStatus(Adults _partner)
 	{
 		this.maritalStatus = true;
 		this.partner = _partner;
@@ -24,6 +24,7 @@ public class Adults extends People{
 		_partner.maritalStatus = true;
 		_partner.partner = this;
 	}
+	
 	
 	
 }

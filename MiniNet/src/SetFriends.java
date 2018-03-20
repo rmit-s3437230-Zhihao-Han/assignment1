@@ -1,0 +1,4 @@
+
+public interface SetFriends {
+	public void setFriends(People _friend);
+}

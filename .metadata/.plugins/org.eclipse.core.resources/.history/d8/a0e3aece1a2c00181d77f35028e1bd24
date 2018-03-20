@@ -1,0 +1,20 @@
+import java.util.*;
+
+public class Adults extends People{
+	
+	private boolean maritalStatus;
+	private People[] friends = new People[50];
+	
+	
+	public Adults(String _firstName, String _lastName, byte _age, char _gender, boolean _maritalStatus)
+	{
+		super(_firstName, _lastName, _age, _gender);
+		this.maritalStatus = _maritalStatus;
+	}
+
+	public String getMaritalStatus() {
+		return this.maritalStatus == true ? "Married" : "Single";
+	}
+	
+	
+}

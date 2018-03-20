@@ -4,7 +4,7 @@ public class Adults extends People{
 	
 	private boolean maritalStatus;
 	private Adults partner;
-	//private Babies children;
+	private Babies children;
 	private People[] friends = new People[50];
 	
 	
@@ -16,7 +16,7 @@ public class Adults extends People{
 		return this.maritalStatus == true ? "Married to " + this.partner.getName() : "Single";
 	}
 	
-	public void setPartner(Adults _partner)
+	public void setMaritalStatus(Adults _partner)
 	{
 		this.maritalStatus = true;
 		this.partner = _partner;
@@ -24,6 +24,7 @@ public class Adults extends People{
 		_partner.maritalStatus = true;
 		_partner.partner = this;
 	}
+	
 	
 	
 }
