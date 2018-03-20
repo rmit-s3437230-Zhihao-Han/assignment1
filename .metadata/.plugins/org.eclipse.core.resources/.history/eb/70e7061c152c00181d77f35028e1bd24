@@ -19,6 +19,4 @@ public abstract class People {
 	public abstract void setName(String _name);
 	public abstract void setAge(byte _age);
 	public abstract void setGender(char _gender);
-	
-	
 }

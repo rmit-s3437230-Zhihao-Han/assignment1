@@ -1,4 +1,4 @@
 
-public class Teenagers {
+public class Teenagers extends People{
 	
 }

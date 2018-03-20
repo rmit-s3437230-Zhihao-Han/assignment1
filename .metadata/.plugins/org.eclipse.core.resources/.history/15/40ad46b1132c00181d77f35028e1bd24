@@ -1,0 +1,10 @@
+
+public abstract class People {
+	private String name;
+	private byte age;
+	private char gender;
+	
+	//Accessors
+	public abstract void getName();
+	
+}
