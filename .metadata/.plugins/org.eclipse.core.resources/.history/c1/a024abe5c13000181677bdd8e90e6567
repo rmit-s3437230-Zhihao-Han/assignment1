@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class Adult extends People implements Socializing {
+
+    //Attributes
+    private Map<String, Baby> children;
+    private Map<String, Adult> friends;
+    
+    
+}

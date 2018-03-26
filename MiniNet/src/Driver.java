@@ -41,4 +41,9 @@ public class Driver {
     //6. Connect two persons in a meaningful way (e.g. friend, parent)
     
 
+    //7. Find out friendship.
+    
+    
+    //8. Find out parents/children.
+    
 }

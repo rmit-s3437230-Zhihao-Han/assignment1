@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Adult extends People {
+    
+    //Attributes
+    private Adult partner;
+    private String status;
+    private Map<String, People> children;
+    private Map<String, Adult> friends;
+    
+    //Constructor
+    public Adult(String _firstName, String _lastName, int _age,
+            String _gender) {
+        super(_firstName, _lastName, _age, _gender);
+        this.status = "";
+    }
+    
+    //Accessos
+    
+    
+    //Mutators
+    public void setStatus(String _status){
+        this.status = _status;
+    }
+    
+}

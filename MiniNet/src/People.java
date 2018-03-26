@@ -1,13 +1,14 @@
+import java.util.*;
 
 public class People {
     private String firstName;
     private String lastName;
-    private byte age;
-    private char gender;
+    private int age;
+    private String gender;
 
     // Constructor
-    public People(String _firstName, String _lastName, byte _age,
-            char _gender) {
+    public People(String _firstName, String _lastName, int _age,
+            String _gender) {
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.age = _age;
@@ -27,11 +28,11 @@ public class People {
         return this.firstName + " " + this.lastName;
     }
 
-    public byte getAge() {
+    public int getAge() {
         return this.age;
     }
 
-    public char getGender() {
+    public String getGender() {
         return this.gender;
     }
 
@@ -44,12 +45,31 @@ public class People {
         this.lastName = _lastName;
     }
 
-    public void setAge(byte _age) {
+    public void setAge(int _age) {
         this.age = _age;
     }
 
-    public void setGender(char _gender) {
+    public void setGender(String _gender) {
         this.gender = _gender;
     }
 
+    // Check if a person's name is already in a specific map
+    // before calling addFriend() or addChild() or addParents() method.
+    // The code for iterating over a HashMap below is from:
+    // https://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
+    public boolean alreadyExisted(String inputString, Map map)
+    {
+        Iterator iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterator.next();
+            if (inputString.equals(pair.getKey()))
+                { return true; }
+            iterator.remove(); // avoids a ConcurrentModificationException
+        }
+        
+        //return false if the input is not found in the current list.
+        return false;
+    }
+    
+    
 }
