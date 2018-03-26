@@ -1,4 +1,4 @@
 
 public interface Socializing {
-	public void setFriends(People _friend);
+    public void setFriends(People _friend);
 }
