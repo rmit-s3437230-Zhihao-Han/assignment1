@@ -7,11 +7,6 @@ public class Teenagers extends People implements Socializing{
 	public Teenagers(String _firstName, String _lastName, byte _age, char _gender) {
 		super(_firstName, _lastName, _age, _gender);
 	}
-
-	@Override
-	public void setFriends(People _friend) {
-		this.friends.put(_friend.getName(), _friend);
-	}
 	
 	
 }

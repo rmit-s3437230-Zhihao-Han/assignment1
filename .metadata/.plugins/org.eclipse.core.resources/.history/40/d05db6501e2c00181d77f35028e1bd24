@@ -1,0 +1,4 @@
+
+public interface Socializing {
+	public void addFriends(People _friend);
+}

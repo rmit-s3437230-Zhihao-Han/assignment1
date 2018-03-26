@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class Adults extends People implements Socializing{
+public class Adults extends People{
 	
 	private boolean maritalStatus;
 	private Adults partner;
-	//private Babies children;
-	private HashMap friends = new HashMap<String,People>();
+	private Babies children;
+	private People[] friends = new People[50];
 	
 	
 	public Adults(String _firstName, String _lastName, byte _age, char _gender){
@@ -18,17 +18,13 @@ public class Adults extends People implements Socializing{
 	
 	public void setPartner(Adults _partner)
 	{
-		//setting partnership for both people
 		this.maritalStatus = true;
 		this.partner = _partner;
+		
 		_partner.maritalStatus = true;
 		_partner.partner = this;
 	}
-
-	@Override
-	public void setFriends(People _friend) {
-		this.friends.put(_friend.getName(), _friend);
-	}
+	
 	
 	
 }

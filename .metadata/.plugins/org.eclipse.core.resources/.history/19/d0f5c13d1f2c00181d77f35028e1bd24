@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class MiniNet {
+
+	public static void main(String[] args) {
+		Map<String,People> people = new HashMap<>();
+		
+		
+		
+		public void setFriends(People _friend) {
+			friends.put(_friend.getName(), _friend);
+		}
+
+	}
+
+}

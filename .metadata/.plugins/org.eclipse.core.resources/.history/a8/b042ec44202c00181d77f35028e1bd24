@@ -1,0 +1,14 @@
+import java.util.*;
+
+public class MiniNet {
+
+	public static void main(String[] args) {
+		Map<String,People> people = new HashMap<>();
+		
+		
+		
+		
+
+	}
+
+}

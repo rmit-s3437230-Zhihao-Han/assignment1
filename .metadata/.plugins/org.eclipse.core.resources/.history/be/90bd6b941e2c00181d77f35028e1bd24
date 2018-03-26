@@ -18,9 +18,9 @@ public class Adults extends People implements Socializing{
 	
 	public void setPartner(Adults _partner)
 	{
-		//setting partnership for both people
 		this.maritalStatus = true;
 		this.partner = _partner;
+		
 		_partner.maritalStatus = true;
 		_partner.partner = this;
 	}

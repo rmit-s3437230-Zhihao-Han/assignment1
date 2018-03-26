@@ -10,7 +10,7 @@ public class Teenagers extends People implements Socializing{
 
 	@Override
 	public void setFriends(People _friend) {
-		this.friends.put(_friend.getName(), _friend);
+		
 	}
 	
 	
