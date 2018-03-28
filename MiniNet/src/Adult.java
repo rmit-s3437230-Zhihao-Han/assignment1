@@ -55,6 +55,10 @@ public class Adult extends People {
             return false;
         }
     }
+    
+    public void addChild(People newChild) {
+        this.children.put(newChild.getName(), newChild);
+    }
 
     public boolean addFriend(Adult newFriend) {
         // Check whether the input adult's name has already been
@@ -146,6 +150,7 @@ public class Adult extends People {
         System.out.println("  2. Update AGE");
         System.out.println("  3. Update GENDER");
         System.out.println("  4. Update STATUS");
+        System.out.println("  5. Quit to main menu");
         System.out.println("\n  Enter number\n"
                 + "  associated with your prefered option: ");
     }

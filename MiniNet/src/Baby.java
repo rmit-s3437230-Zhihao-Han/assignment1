@@ -12,6 +12,8 @@ public class Baby extends People {
         super(_firstName, _lastName, _age, _gender);
         this.dad = _dad;
         this.mom = _dad.getPartner();
+        _dad.addChild(this);
+        _dad.getPartner().addChild(this);
     }
     
     //Accessors
@@ -95,6 +97,7 @@ public class Baby extends People {
         System.out.println("  1. Update NAME");
         System.out.println("  2. Update AGE");
         System.out.println("  3. Update GENDER");
+        System.out.println("  4. Quit to main menu");
         System.out.println("\n  Enter number\n"
         + "  associated with your prefered option: ");
     }

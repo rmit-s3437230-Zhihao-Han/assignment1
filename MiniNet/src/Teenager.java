@@ -15,6 +15,8 @@ public class Teenager extends People {
         this.friends = new HashMap<>();
         this.dad = _dad;
         this.mom = _dad.getPartner();
+        _dad.addChild(this);
+        _dad.getPartner().addChild(this);
     }
     
     
@@ -141,6 +143,7 @@ public class Teenager extends People {
         System.out.println("  2. Update AGE");
         System.out.println("  3. Update GENDER");
         System.out.println("  4. Update STATUS");
+        System.out.println("  5. Quit to main menu");
         System.out.println("\n  Enter number\n"
         + "  associated with your prefered option: ");
     }
