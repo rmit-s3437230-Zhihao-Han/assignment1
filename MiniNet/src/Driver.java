@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Driver {
     // Attributes
-    private Map<String, People> people;
+    private HashMap<String, People> people;
     private People currentPerson = null;
 
     // Constructor
@@ -16,23 +16,44 @@ public class Driver {
         // Adults
         this.people.put("Clark Kent", new Adult("Clark", "Kent", 35, "Male"));
         this.people.put("Steve Job", new Adult("Steve", "Job", 58, "Male"));
+        ((Adult) this.people.get("Steve Job"))
+                .setStatus("Invented MacIntosh was challenging!");
+
         this.people.put("Mark Zuk", new Adult("Mark", "Zuk", 29, "Male"));
+        ((Adult) this.people.get("Mark Zuk"))
+                .addFriend((Adult) this.people.get("Steve Job"));
         this.people.put("Jonathan Kent",
                 new Adult("Jonathan", "Kent", 67, "Male"));
+        this.people.put("Miss Kent", new Adult("Miss", "Kent", 67, "Female"));
+        ((Adult) this.people.get("Jonathan Kent"))
+                .setStatus("Officially adopted SuperMan!");
         this.people.put("Barack Obama",
                 new Adult("Barack", "Obama", 18, "Male"));
+        ((Adult) this.people.get("Barack Obama"))
+                .addFriend((Adult) this.people.get("Steve Job"));
+        ((Adult) this.people.get("Mark Zuk"))
+                .addFriend((Adult) this.people.get("Steve Job"));
+
         this.people.put("Mary Lane", new Adult("Mary", "Lane", 21, "Female"));
         this.people.put("Lois Lane", new Adult("Lois", "Lane", 28, "Female"));
+        ((Adult) this.people.get("Lois Lane"))
+                .setPartner((Adult) this.people.get("Clark Kent"));
+        ((Adult) this.people.get("Lois Lane")).setStatus("Clark is handsome!");
         ((Adult) this.people.get("Barack Obama"))
                 .setPartner((Adult) this.people.get("Mary Lane"));
 
         // Teenagers
         this.people.put("Clever Molin", new Teenager("Clever", "Molin", 15,
                 "Female", (Adult) this.people.get("Barack Obama")));
-
+        ((Teenager) this.people.get("Clever Molin"))
+        .setStatus("What a clever human I am, hahaha!");
+        this.people.put("Alice Wonderland", new Teenager("Alice", "Wonderland",
+                15, "Female", (Adult) this.people.get("Clark Kent")));
+        this.people.put("Alexander Mozard", new Baby("Alexander", "Mozard", 15,
+                "Female", (Adult) this.people.get("Barack Obama")));
     }
 
-    // 0. Executing the program, containing main do-while() menu loop.
+    // !!! Executing the program, containing main do-while() menu loop.
     public void executing() {
         settingUp();
         Scanner scanner = new Scanner(System.in);
@@ -41,46 +62,60 @@ public class Driver {
             displayMenu();
             option = scanner.nextInt();
             scanner.nextLine();
-            if (option < 1 || option > 9) {
+            if (option < 1 || option > 10) {
                 System.out.println("=Warning: invalid option.\n\n");
                 continue;
             }
             switch (option) {
-                case 1:
-                    addNewProfile();
-                    break;
-                case 2:
-                    selectPersonByName();
-                    break;
-                case 3:
-                    displaySelectedProfile();
-                    break;
-                case 4:
-                    updateSelectedProfile();
-                    break;
-                case 5:
-                    deleteSelectedPerson();
-                    break;
-                case 6:
-                    connectTwoPeople();
-                    break;
-                case 7:
-                    findOutFriendship();
-                    break;
-                case 8:
-                    findOutParentsChildren();
-                    break;
-                default:
-                    break;
+            case 1:
+                listEveryone();
+                break;
+            case 2:
+                addNewProfile();
+                break;
+            case 3:
+                selectPersonByName();
+                break;
+            case 4:
+                displaySelectedProfile();
+                break;
+            case 5:
+                updateSelectedProfile();
+                break;
+            case 6:
+                deleteSelectedPerson();
+                break;
+            case 7:
+                connectTwoPeople();
+                break;
+            case 8:
+                findOutFriendship();
+                break;
+            case 9:
+                findOutParentsChildren();
+                break;
+            default:
+                break;
             }
 
-        } while (option != 9);
+        } while (option != 10);
 
-        //scanner.close();
+        // scanner.close();
         System.out.println("\n\nGoodbye!");
     }
 
-    // 1. Add a new person into the network.
+    // 1. List everyone.
+    public void listEveryone() {
+        int c = 0;
+        Iterator iterator = this.people.entrySet().iterator();
+        while (iterator.hasNext()) {
+            c++;
+            Map.Entry pair = (Map.Entry) iterator.next();
+            System.out.println(c + ". " + pair.getKey());
+        }
+    }
+
+    // 2. Add a new person into the network.
     public void addNewProfile() {
         Scanner scanner = new Scanner(System.in);
 
@@ -89,20 +124,13 @@ public class Driver {
         // trim all white spaces in user input and
         // store name(s) in a String var.
         String firstName = scanner.nextLine().replaceAll("\\s+", "");
-        System.out.print("Enter first name: ");
+        System.out.print("Enter last name: ");
         String lastName = scanner.nextLine().replaceAll("\\s+", "");
 
-        while (validateUserInput(firstName + " " + lastName)) {
+        if (validateUserInput(firstName + " " + lastName)) {
             System.out.println("Name '" + firstName + " " + lastName
                     + "' has already existed in the system.");
-            System.out.println("Would you like to try again?? (y/n)");
-            String check = scanner.nextLine();
-            if (check.equals("y"))
-                continue;
-            else {
-                //scanner.close();
-                return;
-            }
+            return;
         }
 
         System.out.print("Enter age: ");
@@ -110,7 +138,7 @@ public class Driver {
         scanner.nextLine();
 
         System.out.print("Enter gender: ");
-        String gender = scanner.nextLine();
+        String gender = scanner.nextLine().replaceAll("\\s+", "");
 
         if (age > 16)
             this.people.put(firstName + " " + lastName,
@@ -118,7 +146,7 @@ public class Driver {
         else {
             if (!inputDad()) {
                 System.out.println("FAILED to add new profile.\n");
-                //scanner.close();
+                // scanner.close();
                 return;
             } else {
                 if (age > 2)
@@ -132,7 +160,7 @@ public class Driver {
             }
         }
         System.out.println(lastName + "'s profile: successfully added.");
-        //scanner.close();
+        // scanner.close();
     }
 
     // If user attempted to add a new Teenager or Baby profile,
@@ -146,36 +174,36 @@ public class Driver {
         if (!validateUserInput(dadName)) {
             System.out.println("=Warning: entered name does NOT"
                     + " exist in the system.");
-            //scanner.close();
+            // scanner.close();
             return false;
         } else if (!(this.currentPerson instanceof Adult)) {
             System.out.println("=Warning: entered name is NOT an ADULT.");
-            //scanner.close();
+            // scanner.close();
             return false;
         } else if (((Adult) this.currentPerson).getPartner() == null) {
             System.out.printf("%-10s%s%-10s", "=Warning:",
                     "entered name is a SINGLE person.\n", "canNOT be a dad!!");
-            //scanner.close();
+            // scanner.close();
             return false;
         }
 
-       // scanner.close();
+        // scanner.close();
         return true;
     }
 
-    // 2. Select a person by name.
+    // 3. Select a person by name.
     public void selectPersonByName() {
         boolean check = true;
         do {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("===SELECTING  A  PERSON===");
+            System.out.println("\n\n===SELECTING  A  PERSON===");
             System.out.println("Enter full name: ");
             String name = scanner.nextLine();
 
             if (validateUserInput(name)) {
                 System.out.println(
-                        "Successfully selected: " + name + "'s profile!");
-                //scanner.close();
+                        "\nSuccessfully selected: " + name + "'s profile!\n\n");
+                // scanner.close();
                 return;
             } else {
                 System.out.println(
@@ -183,7 +211,7 @@ public class Driver {
                 System.out.println("Would you like to try again?? (y/n)");
                 if (!scanner.nextLine().equals("y")) {
                     check = false;
-                    //scanner.close();
+                    // scanner.close();
                 }
             }
         } while (check == true);
@@ -203,14 +231,13 @@ public class Driver {
                 this.currentPerson = (People) pair.getValue();
                 return true;
             }
-            iterator.remove(); // avoids a ConcurrentModificationException
         }
 
         // Entered name is NOT in the system.
         return false;
     }
 
-    // 3. Display the profile of the selected person
+    // 4. Display the profile of the selected person
     // This method is implemented differently in Adult, Teenager and Baby
     // and being called here.
     public void displaySelectedProfile() {
@@ -223,7 +250,7 @@ public class Driver {
         this.currentPerson.displayProfile();
     }
 
-    // 4. Update the profile information of the selected person
+    // 5. Update the profile information of the selected person
     public void updateSelectedProfile() {
         if (this.currentPerson == null) {
             System.out.println("=Warning: First, go back and select the person"
@@ -234,7 +261,7 @@ public class Driver {
         this.currentPerson.updateProfile(this.people);
     }
 
-    // 5. Delete the selected person
+    // 6. Delete the selected person
     public void deleteSelectedPerson() {
         if (this.currentPerson == null) {
             System.out.println("=Warning: First, go back and select the person"
@@ -248,7 +275,7 @@ public class Driver {
         }
     }
 
-    // 6. Connect two people in a meaningful way (e.g. friend)
+    // 7. Connect two people in a meaningful way (e.g. friend)
     public void connectTwoPeople() {
         System.out.println("===CONNECTING TWO PEOPLE===");
         Scanner scanner = new Scanner(System.in);
@@ -271,13 +298,13 @@ public class Driver {
             if (((Adult) first).addFriend((Adult) this.currentPerson)) {
                 System.out.println(first.getName() + " and "
                         + this.currentPerson.getName() + " are now friend!");
-                //scanner.close();
+                // scanner.close();
                 return;
             } else {
                 System.out.println(
                         first.getName() + " and " + this.currentPerson.getName()
                                 + " are already friend!");
-                //scanner.close();
+                // scanner.close();
                 return;
             }
         } else if (first instanceof Teenager
@@ -285,24 +312,24 @@ public class Driver {
             if (((Teenager) first).addFriend((Teenager) this.currentPerson)) {
                 System.out.println(first.getName() + " and "
                         + this.currentPerson.getName() + " are now friend!");
-                //scanner.close();
+                // scanner.close();
                 return;
             } else {
                 System.out.println(
                         first.getName() + " and " + this.currentPerson.getName()
                                 + " are already friend!");
-                //scanner.close();
+                // scanner.close();
                 return;
             }
         } else {
             System.out.println(first.getName() + " and "
                     + this.currentPerson.getName() + " canNOT be friend!");
-            //scanner.close();
+            // scanner.close();
             return;
         }
     }
 
-    // 7. Find out friendship.
+    // 8. Find out friendship.
     public void findOutFriendship() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("===FIND OUT FRIENDSHIP===");
@@ -327,12 +354,12 @@ public class Driver {
                     .containsKey(this.currentPerson.getName())) {
                 System.out.println(first.getName() + " and "
                         + this.currentPerson.getName() + " are friends!");
-                //scanner.close();
+                // scanner.close();
                 return;
             } else {
                 System.out.println(first.getName() + " and "
                         + this.currentPerson.getName() + " are NOT friends!");
-                //scanner.close();
+                // scanner.close();
                 return;
             }
         }
@@ -343,22 +370,22 @@ public class Driver {
                     .containsKey(this.currentPerson.getName())) {
                 System.out.println(first.getName() + " and "
                         + this.currentPerson.getName() + " are friends!");
-                //scanner.close();
+                // scanner.close();
                 return;
             } else {
                 System.out.println(first.getName() + " and "
                         + this.currentPerson.getName() + " are NOT friends!");
-                //scanner.close();
+                // scanner.close();
                 return;
             }
         }
 
         System.out.println(first.getName() + " and "
                 + this.currentPerson.getName() + " CANNOT be friend!");
-        //scanner.close();
+        // scanner.close();
     }
 
-    // 8. Find out parents/children of selected person.
+    // 9. Find out parents/children of selected person.
     public void findOutParentsChildren() {
         if (this.currentPerson == null) {
             System.out.println("=Warning: First, go back and select the person"
@@ -384,18 +411,19 @@ public class Driver {
 
     // Display menu
     public void displayMenu() {
-        System.out.println("MiniNet Menu");
+        System.out.println("\nMiniNet Menu");
         System.out.println("===================================");
-        System.out.println("1.  Add new person");
-        System.out.println("2.  Select a person");
-        System.out.println("3.  Display selected person");
-        System.out.println("4.  Update selected person");
-        System.out.println("5.  Delete selected person");
-        System.out.println("6.  Connect two people (add friend)");
-        System.out.println("7.  Find out friendship of two people");
-        System.out.println("8.  Find out parents/children\n"
+        System.out.println("1.  List everyone in system");
+        System.out.println("2.  Add new person");
+        System.out.println("3.  Select a person");
+        System.out.println("4.  Display selected person");
+        System.out.println("5.  Update selected person");
+        System.out.println("6.  Delete selected person");
+        System.out.println("7.  Connect two people (add friend)");
+        System.out.println("8.  Find out friendship of two people");
+        System.out.println("9.  Find out parents/children\n"
                 + "     of the selected person");
-        System.out.println("9.  Exit\n");
+        System.out.println("10.  Exit\n");
         System.out.print("Enter an option: ");
     }// end of displayMenu()
 

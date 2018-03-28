@@ -1,5 +1,0 @@
-import java.util.*;
-
-public class Babies extends People{
-	private Map<String,People> parents = new HashMap<>();
-}

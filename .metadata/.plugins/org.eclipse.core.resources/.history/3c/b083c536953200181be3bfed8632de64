@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class MiniNet {
+
+    public static void main(String[] args) {
+        HashMap<String, People> people = new HashMap<>();
+        Driver driver = new Driver(people);
+        driver.executing();
+
+    } // end: main()
+
+}

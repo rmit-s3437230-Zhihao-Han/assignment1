@@ -41,7 +41,7 @@ public abstract class People {
         this.firstName = _firstName;
     }
 
-    public void setSecondName(String _lastName) {
+    public void setLastName(String _lastName) {
         this.lastName = _lastName;
     }
 
@@ -57,24 +57,22 @@ public abstract class People {
     // before calling addFriend() or addChild() or addParents() method.
     // The code for iterating over a HashMap below is from:
     // https://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
-    public boolean alreadyExisted(String inputString, Map map)
-    {
+    public boolean alreadyExisted(String inputString, Map map) {
         Iterator iterator = map.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry pair = (Map.Entry)iterator.next();
-            if (inputString.equals(pair.getKey()))
-                { return true; }
-            iterator.remove(); // avoids a ConcurrentModificationException
+            Map.Entry pair = (Map.Entry) iterator.next();
+            if (inputString.equals(pair.getKey())) {
+                return true;
+            }
         }
-        
-        //return false if the input is not found in the current list.
+
+        // return false if the input is not found in the current list.
         return false;
     }
-    
-    //Abstract methods being implemented by Adult, Teenager and Baby.
+
+    // Abstract methods being implemented by Adult, Teenager and Baby.
     public abstract void displayProfile();
+
     public abstract void updateProfile(Map _people);
-    public abstract void findParentsChildren();
-    
-    
-} //END of People class
+
+} // END of People class
