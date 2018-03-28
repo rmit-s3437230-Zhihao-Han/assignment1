@@ -73,7 +73,7 @@ public abstract class People {
     
     //Abstract methods being implemented by Adult, Teenager and Baby.
     public abstract void displayProfile();
-    public abstract void updateProfile();
+    public abstract void updateProfile(Map _people);
     public abstract void findParentsChildren();
     
     

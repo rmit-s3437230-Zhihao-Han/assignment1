@@ -3,35 +3,100 @@ import java.util.*;
 public class Baby extends People {
     
     //Attributes
-    private Map<String, Adult> parents;
-
+    private Adult dad;
+    private Adult mom;
     
     //Constructor
     public Baby(String _firstName, String _lastName, int _age,
-            String _gender) {
+            String _gender, Adult _dad) {
         super(_firstName, _lastName, _age, _gender);
-        this.parents = new HashMap<>();
+        this.dad = _dad;
+        this.mom = _dad.getPartner();
     }
     
     //Accessors
-    public Adult getFather() {
-        return this.parents.get("Father");
+    public Adult getDad() {
+        return this.dad;
     }
     
-    public Adult getMother() {
-        return this.parents.get("Mother");
+    public Adult getMom() {
+        return this.mom;
     }
 
     @Override
     public void displayProfile() {
-        // TODO Auto-generated method stub
-        
+        System.out.println("===DISPLAYING  SELECTED  PROFILE===");
+        System.out.printf("%-10s%s", "Name:", this.getName());
+        System.out.printf("%-10s%s", "Age:", this.getAge());
+        System.out.printf("%-10s%s", "Gender:", this.getGender());
+        //Print out parents name.
+        System.out.printf("%-10s%s", "Dad:", this.dad.getName());
+        System.out.printf("%-10s%s", "Mom:", this.mom.getName());
     }
 
     @Override
-    public void updateProfile() {
-        // TODO Auto-generated method stub
-        
+    public void updateProfile(Map _people) {
+        int option;
+        do {
+            printSubMenu();
+            Scanner scanner = new Scanner(System.in);
+            option = scanner.nextInt();
+            scanner.nextLine();        
+            switch(option)
+            {
+            case 1: 
+                //Store old name which is the key in map, 
+                //before updating new value and new key.
+                //(because key in map is actually the full name)
+                String oldName = this.getName();
+                System.out.println("Enter first name: ");
+                this.setFirstName(scanner.nextLine().replaceAll("\\s+", ""));
+                System.out.println("Enter last name: ");
+                this.setFirstName(scanner.nextLine().replaceAll("\\s+", ""));
+                
+                //putting a new pair of key-value with updated value
+                //in the map.
+                _people.put(this.getName(), this);
+                //removing the old pair key-value with old full name as key.
+                _people.remove(oldName);
+                System.out.println("Name: UPDATED to " + this.getName());
+                break;
+                
+            case 2:
+                System.out.println("Enter new age: ");
+                this.setAge(scanner.nextInt());
+                scanner.nextLine();
+                System.out.println("Age: UPDATED to " + this.getAge());
+                break;
+                
+            case 3:
+                System.out.println("Enter new gender: ");
+                this.setGender(scanner.nextLine().replaceAll("\\s+", ""));
+                System.out.println("Gender: UPDATED to " + this.getGender());
+                break;
+                
+            default:
+                break;
+            }
+            scanner.close();
+        } while(option != 4);
+    }
+
+    public void listParents() {
+        System.out.println("Dad: " + this.dad.getName());
+        System.out.println("Mom: " + this.mom.getName());
+    }// end: listParents()
+    
+    
+    //Print out sub-menu for updateProfile option.
+    public void printSubMenu()
+    {
+        System.out.println("===UPDATING  SELECTED  PROFILE===");
+        System.out.println("  1. Update NAME");
+        System.out.println("  2. Update AGE");
+        System.out.println("  3. Update GENDER");
+        System.out.println("\n  Enter number\n"
+        + "  associated with your prefered option: ");
     }
 
     @Override

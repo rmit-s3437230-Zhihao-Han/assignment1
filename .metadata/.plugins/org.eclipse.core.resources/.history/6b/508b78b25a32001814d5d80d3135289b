@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class Teenager extends People {
+
+    //Attributes
+    private String status;
+    private Map<String, Adult> parents;
+    private Map<String, Teenager> friends;
+
+    public Teenager(String _firstName, String _lastName, int _age,
+            String _gender) {
+        super(_firstName, _lastName, _age, _gender);
+        this.status = "";
+        this.friends = new HashMap<>();
+        
+    }
+    
+    
+    // Accessors
+    public Map getFriendsMap()
+    {
+        return this.friends;
+    }
+    
+    
+    // Mutators
+    public void setStatus(String _status) {
+        this.status = _status;
+    }
+
+
+    @Override
+    public void displayProfile() {
+        System.out.println("===DISPLAYING  SELECTED  PROFILE===");
+        System.out.printf("%-10s%s", "Name:", this.getName());
+        System.out.printf("%-10s%s", "Age:", this.getAge());
+        System.out.printf("%-10s%s", "Gender:", this.getGender());
+        //Print out status if available.
+        if (!this.status.equals(""))
+            System.out.printf("%-10s%s", "Status:", this.status);
+        
+        //Print out parents name.
+        if ( !(this.partner == null) )
+            System.out.printf("%-10s%s", "Partner:", this.partner.getName());        
+    }
+
+
+    @Override
+    public void updateProfile() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void findParentsChildren() {
+        // TODO Auto-generated method stub
+        
+    }
+}

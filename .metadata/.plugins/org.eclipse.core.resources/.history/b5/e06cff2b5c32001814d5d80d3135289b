@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class Baby extends People {
+    
+    //Attributes
+    private Adult dad;
+    private Adult mom;
+    
+    //Constructor
+    public Baby(String _firstName, String _lastName, int _age,
+            String _gender, Adult _dad) {
+        super(_firstName, _lastName, _age, _gender);
+        this.dad = _dad;
+        this.mom = _dad.getPartner();
+    }
+    
+    //Accessors
+    public Adult getFather() {
+        return this.parents.get("Father");
+    }
+    
+    public Adult getMother() {
+        return this.parents.get("Mother");
+    }
+
+    @Override
+    public void displayProfile() {
+        System.out.println("===DISPLAYING  SELECTED  PROFILE===");
+        System.out.printf("%-10s%s", "Name:", this.getName());
+        System.out.printf("%-10s%s", "Age:", this.getAge());
+        System.out.printf("%-10s%s", "Gender:", this.getGender());
+        //Print out parents name.
+        System.out.printf("%-10s%s", "Dad:", this.dad.getName());
+        System.out.printf("%-10s%s", "Mom:", this.mom.getName());
+    }
+
+    @Override
+    public void updateProfile() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void findParentsChildren() {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    //Mutators
+    
+
+}
