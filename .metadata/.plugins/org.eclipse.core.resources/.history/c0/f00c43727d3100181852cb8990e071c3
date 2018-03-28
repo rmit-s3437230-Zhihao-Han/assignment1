@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class Teenager extends People {
+
+    //Attributes
+    private String status;
+
+    public Teenager(String _firstName, String _lastName, int _age,
+            String _gender) {
+        super(_firstName, _lastName, _age, _gender);
+        // TODO Auto-generated constructor stub
+    }
+    
+
+}

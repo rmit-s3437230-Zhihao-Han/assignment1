@@ -5,8 +5,9 @@ public class Adult extends People {
     // Attributes
     private Adult partner;
     private String status;
-    private Map<String, People> children;
     private Map<String, Adult> friends;
+    private Map<String, People> children;
+ 
 
     // Constructor
     public Adult(String _firstName, String _lastName, int _age,
@@ -14,19 +15,28 @@ public class Adult extends People {
         super(_firstName, _lastName, _age, _gender);
         this.status = "";
         this.partner = null;
+        this.friends = new HashMap<>();
+        this.children = new HashMap<>();
     }
 
-    // Accessos
+    // Accessors
     public Map getFriendsMap()
     {
         return this.friends;
     }
 
+    public Map getChildrenMap()
+    {
+        return this.children;
+    }
+    
+    
     // Mutators
     public void setStatus(String _status) {
         this.status = _status;
     }
 
+    
     public boolean setPartner(Adult _partner) {
         // Specification does not allow divorce and get married 
         // to another person.
@@ -42,9 +52,14 @@ public class Adult extends People {
         }
     }
     
+    
     public boolean addFriend(Adult newFriend)
     {
-        if ( !alreadyExisted(newFriend.getName(), friends) )
+        // Check whether the input adult's name has already been 
+        // in this object's friends map.
+        // If NOT: add new friend.
+        // If YES: return false and let the call method handle this.
+        if ( !alreadyExisted(newFriend.getName(), this.friends) )
         {
             this.friends.put(newFriend.getName(), newFriend);
             //NOT SURE if the following line is working, TEST THIS!!!!
@@ -56,10 +71,31 @@ public class Adult extends People {
             return false;  
     }
     
-    
-    public void addChild(People newChild)
-    {
+    @Override
+    public void displayProfile() {
+        System.out.println("===DISPLAYING  SELECTED  PROFILE===");
+        System.out.printf("%-10s%s", "Name:", this.getName());
+        System.out.printf("%-10s%s", "Age:", this.getAge());
+        System.out.printf("%-10s%s", "Gender:", this.getGender());
+        //Print out status if available.
+        if (!this.status.equals(""))
+            System.out.printf("%-10s%s", "Status:", this.status);
+        //Print out partner's name if available.
+        if ( !(this.partner == null) )
+            System.out.printf("%-10s%s", "Partner:", this.partner.getName());
+    }
+
+    @Override
+    public void updateProfile() {
+        // TODO Auto-generated method stub
         
     }
+
+    @Override
+    public void findParentsChildren() {
+        // TODO Auto-generated method stub
+        
+    }
+    
 
 }

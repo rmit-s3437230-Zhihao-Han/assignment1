@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class People {
+public abstract class People {
     private String firstName;
     private String lastName;
     private int age;
@@ -71,5 +71,10 @@ public class People {
         return false;
     }
     
+    //Abstract methods being implemented by Adult, Teenager and Baby.
+    public abstract void displayProfile();
+    public abstract void updateProfile();
+    public abstract void findParentsChildren();
     
-}
+    
+} //END of People class

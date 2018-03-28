@@ -1,0 +1,11 @@
+import java.util.*;
+
+public class Baby extends People {
+    private Map<String, Adult> parents = new HashMap<>>();
+
+    public Baby(String _firstName, String _lastName, int _age,
+            String _gender) {
+        super(_firstName, _lastName, _age, _gender);
+    }
+
+}

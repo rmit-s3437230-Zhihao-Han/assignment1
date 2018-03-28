@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Teenager extends People {
+
+    //Attributes
+    private String status;
+    private Map<String, Teenager> friends;
+
+    public Teenager(String _firstName, String _lastName, int _age,
+            String _gender) {
+        super(_firstName, _lastName, _age, _gender);
+        this.status = "";
+        this.friends = new HashMap<>();
+    }
+    
+    
+    // Accessors
+    public Map getFriendsMap()
+    {
+        return this.friends;
+    }
+    
+    
+    // Mutators
+    public void setStatus(String _status) {
+        this.status = _status;
+    }
+
+
+    @Override
+    public void displayProfile() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void updateProfile() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void findParentsChildren() {
+        // TODO Auto-generated method stub
+        
+    }
+}

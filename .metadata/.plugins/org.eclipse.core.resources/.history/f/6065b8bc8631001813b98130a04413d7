@@ -1,0 +1,105 @@
+import java.util.*;
+
+public class Driver {
+    //Attributes
+    Map<String, People> people;
+    
+    
+    
+    //Constructor
+    public Driver()
+    {
+        this.people = new HashMap<>();
+    }
+    
+    
+    
+    
+    //Methods
+    //0. Executing the program, containing main do-while() menu loop.
+    public void executing()
+    {
+        
+    }
+    
+    //1. Add a person into the network.
+    // a. Add new Adult
+    public void addAdult()
+    {
+        
+    }
+    
+    
+    
+    
+    // b. Add new Teen
+    
+    // c. Add new Baby
+    
+    
+    
+    //2. Select a person by name.
+    
+    
+    
+    //3. Display the profile of the selected person
+    
+    
+    
+    //4. Update the profile information of the selected person
+    
+    
+    
+    //5. Delete the selected person
+    
+    
+    //6. Connect two persons in a meaningful way (e.g. friend, parent)
+    
+
+    //7. Find out friendship.
+    
+    
+    //8. Find out parents/children.
+    
+    
+    
+    //Validate name input.
+    public boolean validateNameInput()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter name: ");
+        
+        Iterator iterator = this.people.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterator.next();
+            if (input.nextLine().equals(pair.getKey()))
+            {
+                //Entered name is already existed in the system.
+                return true;
+            }
+            iterator.remove(); // avoids a ConcurrentModificationException
+        }
+        
+        //Entered name is new to the system.
+        return false;
+    }
+    
+    //Display menu
+    public void displayMenu()
+    {
+        System.out.println("MiniNet Menu");
+        System.out.println("===================================");
+        System.out.println("1.  List everyone");
+        System.out.println("2.  Select a person");
+        System.out.println("3.  Display selected person");
+        System.out.println("4.  Update selected person");
+        System.out.println("5.  Delete selected person");
+        System.out.println("6.  ");
+        System.out.println("7.  Find out friendship of two people");
+        System.out.println("8.  Find out parents/children\n"
+                        + "     of the selected person");
+        System.out.println("9.  Exit\n");
+        System.out.println("Enter an option: ");
+    }
+    
+}
